@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Level Input</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: radial-gradient(circle at center, #2b2d42, #1a1b2b);
+            color: #edf2f4;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #8d99ae;
+            padding: 15px 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            color: #1a1b2b;
+        }
+
+        .navbar a {
+            color: #edf2f4;
+            text-decoration: none;
+            padding: 8px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid transparent;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            background: #edf2f4;
+            color: #1a1b2b;
+            border-radius: 5px;
+            border-color: #8d99ae;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Form Container Styling */
+        .form-container {
+            background: #1a1b2b;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            margin-top: 100px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            border: 2px solid #8d99ae;
+        }
+
+        .form-container h2 {
+            font-size: 28px;
+            color: #edf2f4;
+            margin-bottom: 25px;
+        }
+
+        .form-container input {
+            font-size: 16px;
+            padding: 12px;
+            margin: 10px 0;
+            width: 85%;
+            border: 2px solid #8d99ae;
+            border-radius: 8px;
+            outline: none;
+            background: #edf2f4;
+            color: #1a1b2b;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-container input:focus {
+            border-color: #ef233c;
+            background: #2b2d42;
+            color: #edf2f4;
+        }
+
+        .form-container button {
+            padding: 12px 40px;
+            background: linear-gradient(45deg, #ef233c, #d90429);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-container button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #d90429, #ef233c);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar a {
+                font-size: 14px;
+                padding: 5px 10px;
+            }
+
+            .form-container {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .form-container h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-left">
+            <a href="home.html">Home</a>
+            <a href="about_us.html">About Us</a>
+            <a href="history.html">History</a>
+            <a href="resources.html">Resources</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="profile.html">Profile</a>
+            <a href="logout.html">Logout</a>
+        </div>
+    </div>
+
+    <!-- Main Form Content -->
+    <div class="form-container">
+        <h2>Enter Your Stress Prediction Data</h2>
+        <form id="stressForm">
+            <input type="number" id="snoringRate" placeholder="Snoring Rate" required><br>
+            <input type="number" id="respiratoryRate" placeholder="Respiratory Rate" required><br>
+            <input type="number" id="bodyTemp" placeholder="Body Temperature (°C)" required><br>
+            <input type="number" id="limbMovement" placeholder="Limb Movement" required><br>
+            <input type="number" id="bloodOxygen" placeholder="Blood Oxygen" required><br>
+            <input type="number" id="eyeMovement" placeholder="Eye Movement" required><br>
+            <input type="number" id="sleepHours" placeholder="Sleep Hours" required><br>
+            <input type="number" id="heartRate" placeholder="Heart Rate" required><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('stressForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = {
+                snoringRate: document.getElementById('snoringRate').value,
+                respiratoryRate: document.getElementById('respiratoryRate').value,
+                bodyTemp: document.getElementById('bodyTemp').value,
+                limbMovement: document.getElementById('limbMovement').value,
+                bloodOxygen: document.getElementById('bloodOxygen').value,
+                eyeMovement: document.getElementById('eyeMovement').value,
+                sleepHours: document.getElementById('sleepHours').value,
+                heartRate: document.getElementById('heartRate').value,
+            };
+
+            localStorage.setItem('latestPrediction', JSON.stringify(formData));
+            alert("Data submitted successfully!");
+        });
+    </script>
+
+</body>
+</html>
